@@ -13,6 +13,7 @@ import { TransactionTable } from '../components/TransactionTable';
 import { useToast } from '../components/ToastProvider';
 import { usePreferences } from '../hooks/usePreferences';
 import { useSnapshot } from '../hooks/useSnapshot';
+import { panelOrigin } from '../config/brand';
 import { cancelDemoTransaction, searchTransactions } from '../services/api';
 import { downloadText, toCsv, TRANSACTION_CSV_COLUMNS } from '../utils/csv';
 
@@ -145,7 +146,7 @@ export function TransactionHistory() {
               onPage={(page) => setFilters((current) => ({ ...current, page }))}
               emptyTitle={catalogEmpty ? 'No demo records yet' : 'No filters match'}
               emptyDescription={catalogEmpty ? 'Create a simulated request in the Loading Panel. It will show up in this shared demo dataset.' : 'Clear the search or filters to see the rest of the demo records.'}
-              emptyAction={noMatch ? <Button variant="outline" onClick={() => setFilters(INITIAL)}>Clear search and filters</Button> : <a className="btn btn-primary" href="http://localhost:5174/new">Create a demo request</a>}
+              emptyAction={noMatch ? <Button variant="outline" onClick={() => setFilters(INITIAL)}>Clear search and filters</Button> : <a className="btn btn-primary" href={`${panelOrigin('loading')}/new`}>Create a demo request</a>}
               onQuickView={setQuick}
               onCancel={setCancelTarget}
             />

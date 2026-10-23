@@ -27,9 +27,19 @@ export const panels = [
   },
 ];
 
+const productionOrigins = {
+  admin: 'https://finora-admin-panel.vercel.app',
+  loading: 'https://finora-loading-panel.vercel.app',
+  history: 'https://finora-history-panel.vercel.app',
+};
+
 export function panelOrigin(id) {
-  const panel = panels.find((item) => item.id === id);
-  return `http://localhost:${panel.port}`;
+  const onLocalhost = typeof window !== 'undefined' && window.location.hostname === 'localhost';
+  if (onLocalhost) {
+    const panel = panels.find((item) => item.id === id);
+    return `http://localhost:${panel.port}`;
+  }
+  return productionOrigins[id];
 }
 
 export function isCurrentPanel(id) {

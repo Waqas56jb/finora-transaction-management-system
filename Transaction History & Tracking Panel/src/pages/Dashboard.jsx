@@ -11,6 +11,7 @@ import { StatusBadge } from '../components/StatusBadge';
 import { useNow } from '../hooks/useNow';
 import { usePreferences } from '../hooks/usePreferences';
 import { useSnapshot } from '../hooks/useSnapshot';
+import { panelOrigin } from '../config/brand';
 import { CHART_COLORS } from '../utils/constants';
 import { dayKey, formatClock, formatDateTime, formatMoney, last7Days } from '../utils/format';
 
@@ -64,7 +65,7 @@ export function Dashboard() {
         rows={recent}
         emptyTitle="No demo records yet"
         emptyDescription="Records created in the Loading Panel appear here after you refresh this page."
-        emptyAction={<a className="btn btn-primary" href="http://localhost:5174/new">Open the Loading Panel</a>}
+        emptyAction={<a className="btn btn-primary" href={`${panelOrigin('loading')}/new`}>Open the Loading Panel</a>}
         columns={[
           { key: 'reference', label: 'Reference', render: (row) => row.reference },
           { key: 'transactionType', label: 'Type', render: (row) => <span className="capitalize">{row.transactionType}</span> },
