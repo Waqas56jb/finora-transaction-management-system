@@ -35,6 +35,12 @@ function localRpc(method, payload) {
   return result.data;
 }
 
+function fromLocalStore(method, payload) {
+  const data = localRpc(method, payload);
+  if (MUTATIONS.has(method)) window.dispatchEvent(new CustomEvent('finora-demo-changed'));
+  return data;
+}
+
 export async function rpc(method, payload) {
   let response;
   try {
@@ -44,19 +50,20 @@ export async function rpc(method, payload) {
       body: JSON.stringify({ method, payload: payload ?? {} }),
     });
   } catch {
-    const data = localRpc(method, payload);
-    if (MUTATIONS.has(method)) window.dispatchEvent(new CustomEvent('finora-demo-changed'));
-    return data;
+    return fromLocalStore(method, payload);
   }
 
-  if (response.status === 404) {
-    const data = localRpc(method, payload);
-    if (MUTATIONS.has(method)) window.dispatchEvent(new CustomEvent('finora-demo-changed'));
-    return data;
+  const contentType = response.headers.get('content-type') || '';
+  const jsonResponse = contentType.includes('application/json');
+  if (response.status === 404 || !jsonResponse) {
+    return fromLocalStore(method, payload);
   }
 
   const body = await response.json().catch(() => null);
-  if (!response.ok || !body) {
+  if (!body || typeof body.ok !== 'boolean') {
+    return fromLocalStore(method, payload);
+  }
+  if (!response.ok) {
     throw new Error(body?.error?.message || 'The demo service is unavailable.');
   }
   if (!body.ok) {
