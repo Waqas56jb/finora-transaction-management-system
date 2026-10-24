@@ -8,8 +8,17 @@ export function useOverlay(open) {
     if (!open) return undefined;
     const previous = document.activeElement;
     const root = ref.current;
-    const previousOverflow = document.body.style.overflow;
+    const scrollY = window.scrollY;
+    const previousStyle = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    };
     document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
 
     const focusables = () => (root
       ? [...root.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
@@ -44,7 +53,11 @@ export function useOverlay(open) {
 
     document.addEventListener('keydown', onKey);
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = previousStyle.overflow;
+      document.body.style.position = previousStyle.position;
+      document.body.style.top = previousStyle.top;
+      document.body.style.width = previousStyle.width;
+      window.scrollTo(0, scrollY);
       document.removeEventListener('keydown', onKey);
       if (previous && typeof previous.focus === 'function') previous.focus();
     };

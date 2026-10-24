@@ -34,11 +34,11 @@ export function ToastProvider({ children }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      <div className="pointer-events-none fixed bottom-4 right-4 z-[80] flex w-[min(100%-2rem,22rem)] flex-col gap-2" aria-live="polite">
+      <div className="pointer-events-none fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-[80] flex flex-col gap-2 sm:inset-x-auto sm:right-4 sm:w-[22rem]" aria-live="polite">
         {toasts.map((toast) => (
           <div key={toast.id} className={cx('pointer-events-auto flex items-start gap-3 rounded-card border px-4 py-3 text-sm shadow-card', TONE[toast.tone])}>
             <p className="flex-1 leading-6 text-ink">{toast.message}</p>
-            <button type="button" className="rounded-lg p-1 text-muted hover:bg-soft" aria-label="Dismiss notification" onClick={() => dismiss(toast.id)}>
+            <button type="button" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted hover:bg-soft" aria-label="Dismiss notification" onClick={() => dismiss(toast.id)}>
               <X className="h-4 w-4" />
             </button>
           </div>

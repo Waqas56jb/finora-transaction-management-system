@@ -179,7 +179,7 @@ function Item({ label, value }) {
   return (
     <div>
       <dt className="text-muted">{label}</dt>
-      <dd className="mt-0.5 font-medium">{value || '—'}</dd>
+      <dd className="mt-0.5 break-words font-medium">{value || '—'}</dd>
     </div>
   );
 }

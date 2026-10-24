@@ -179,19 +179,19 @@ export function ServerConfiguration() {
         ]}
         mobileRender={(row) => (
           <div className="space-y-3">
-            <div className="flex items-start justify-between gap-2">
-              <div>
+            <div className="flex min-w-0 flex-wrap items-start justify-between gap-2">
+              <div className="min-w-0">
                 <p className="font-medium">{row.name}</p>
                 <p className="text-sm text-muted">{row.environment} · {row.enabled ? 'Enabled' : 'Disabled'}</p>
               </div>
               <StatusBadge kind="server" status={row.status} />
             </div>
-            <div className="flex flex-wrap gap-2">
-              <Button variant="outline" onClick={() => openView(row)}>View details</Button>
-              <Button variant="outline" onClick={() => openEdit(row)}>Edit</Button>
-              <Button variant="outline" loading={testingId === row.id} onClick={() => runTest(row)}>Test demo connection</Button>
-              <Button variant="ghost" onClick={() => toggleEnabled(row)}>{row.enabled ? 'Disable' : 'Enable'}</Button>
-              <Button variant="danger" onClick={() => setRemoveTarget(row)}>Delete</Button>
+            <div className="grid grid-cols-2 gap-2">
+              <Button variant="outline" className="w-full whitespace-normal px-2" onClick={() => openView(row)}>View details</Button>
+              <Button variant="outline" className="w-full whitespace-normal px-2" onClick={() => openEdit(row)}>Edit</Button>
+              <Button variant="outline" className="col-span-2 w-full whitespace-normal px-2" loading={testingId === row.id} onClick={() => runTest(row)}>Test demo connection</Button>
+              <Button variant="ghost" className="w-full" onClick={() => toggleEnabled(row)}>{row.enabled ? 'Disable' : 'Enable'}</Button>
+              <Button variant="danger" className="w-full" onClick={() => setRemoveTarget(row)}>Delete</Button>
             </div>
           </div>
         )}
@@ -297,7 +297,7 @@ export function ServerConfiguration() {
 
 function IconButton({ label, children, ...props }) {
   return (
-    <button type="button" className="rounded-lg p-2 text-muted hover:bg-soft hover:text-ink" aria-label={label} title={label} {...props}>
+    <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-muted hover:bg-soft hover:text-ink" aria-label={label} title={label} {...props}>
       {children}
     </button>
   );

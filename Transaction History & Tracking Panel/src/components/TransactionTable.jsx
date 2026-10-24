@@ -68,7 +68,7 @@ export function TransactionTable({
           </div>
           <p className="text-sm text-muted">{row.serverProfileName} · {row.protocolIdentifier}</p>
           <p className="text-sm">{formatMoney(row.amount, row.currency)} · {formatDateTime(row.createdAt)}</p>
-          <div className="flex flex-wrap gap-3 text-sm">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
             <button type="button" className="font-medium text-brand" onClick={() => onQuickView(row)}>Quick view</button>
             <Link className="font-medium text-brand" to={`/transactions/${row.reference}`}>Open</Link>
             {['pending', 'completed'].includes(row.status) ? <button type="button" className="font-medium text-rose-800" onClick={() => onCancel(row)}>Cancel</button> : null}

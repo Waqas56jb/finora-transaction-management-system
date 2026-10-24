@@ -7,7 +7,7 @@ export function TransactionFilters({ filters, patch, protocols, currencies, onCl
   const fieldId = (name) => `${idPrefix}-${name}`;
   return (
     <div className="space-y-3">
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3">
         <FormField label="Status" htmlFor={fieldId('status')}>
           <select {...fieldProps(fieldId('status'))} value={filters.status} onChange={(event) => patch({ status: event.target.value })}>
             <option value="">Any status</option>

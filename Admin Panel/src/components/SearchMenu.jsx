@@ -109,7 +109,7 @@ export function SearchMenu({ id = 'quick-search' }) {
         onKeyDown={onKeyDown}
       />
       {open && query.trim().length >= 2 ? (
-        <ul id={`${id}-list`} role="listbox" className="absolute z-50 mt-2 max-h-80 w-full overflow-auto rounded-card border border-line bg-surface p-1 shadow-card">
+        <ul id={`${id}-list`} role="listbox" className="absolute z-50 mt-2 max-h-[40dvh] w-full overflow-auto rounded-card border border-line bg-surface p-1 shadow-card sm:max-h-80">
           {results.length === 0 ? (
             <li className="px-3 py-3 text-sm text-muted">No demo records match that search.</li>
           ) : results.map((item, index) => (
@@ -118,7 +118,7 @@ export function SearchMenu({ id = 'quick-search' }) {
                 type="button"
                 role="option"
                 aria-selected={index === active}
-                className={`w-full rounded-control px-3 py-2 text-left ${index === active ? 'bg-soft' : 'hover:bg-soft'}`}
+                className={`min-h-11 w-full rounded-control px-3 py-3 text-left ${index === active ? 'bg-soft' : 'hover:bg-soft'}`}
                 onMouseEnter={() => setActive(index)}
                 onClick={() => choose(item)}
               >

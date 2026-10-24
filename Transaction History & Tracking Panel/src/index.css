@@ -34,10 +34,16 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -46,6 +52,11 @@ body {
   color: rgb(var(--ink));
   font-family: Inter, "Segoe UI", system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+  overflow-wrap: break-word;
+}
+
+#root {
+  min-width: 0;
 }
 
 ::selection {
@@ -65,7 +76,8 @@ body {
 
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-control px-3.5 py-2.5 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-control px-3.5 py-2.5 text-sm font-medium transition disabled:pointer-events-none disabled:opacity-50;
+    touch-action: manipulation;
   }
 
   .btn-primary {
@@ -98,7 +110,7 @@ body {
   }
 
   .field {
-    @apply w-full rounded-control border border-line bg-surface px-3 py-2.5 text-sm text-ink shadow-sm outline-none transition placeholder:text-stone-400;
+    @apply w-full min-w-0 max-w-full rounded-control border border-line bg-surface px-3 py-2.5 text-base text-ink shadow-sm outline-none transition placeholder:text-stone-400 md:text-sm;
   }
 
   .field:focus {
@@ -120,7 +132,7 @@ body {
   }
 
   .card {
-    @apply rounded-card border border-line bg-surface shadow-card;
+    @apply min-w-0 max-w-full rounded-card border border-line bg-surface shadow-card;
   }
 
   .badge {
@@ -200,6 +212,21 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .popover-sheet {
+    position: fixed;
+    left: max(0.75rem, env(safe-area-inset-left));
+    right: max(0.75rem, env(safe-area-inset-right));
+    top: auto;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    z-index: 60;
+    width: auto;
+    max-height: min(70dvh, 28rem);
+    margin-top: 0;
+    overflow: auto;
   }
 }
 

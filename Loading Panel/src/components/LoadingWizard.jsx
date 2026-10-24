@@ -107,7 +107,13 @@ export function LoadingWizard() {
         else submit();
       }}
     >
-      <ol className="grid grid-cols-5 gap-2" aria-label="Form progress">
+      <div className="sm:hidden" aria-hidden="true">
+        <p className="text-sm font-medium">Step {step} of {STEPS.length} · {STEPS[step - 1]}</p>
+        <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-line" aria-hidden="true">
+          <div className="h-full rounded-full bg-brand" style={{ width: `${(step / STEPS.length) * 100}%` }} />
+        </div>
+      </div>
+      <ol className="sr-only gap-2 sm:not-sr-only sm:grid sm:grid-cols-5" aria-label="Form progress">
         {STEPS.map((label, index) => {
           const number = index + 1;
           const active = number === step;
@@ -129,7 +135,7 @@ export function LoadingWizard() {
         })}
       </ol>
 
-      <div className="card p-5">
+      <div className="card p-4 sm:p-5">
         {step === 1 ? <ConfigurationStep form={form} update={update} errors={errors} data={data} /> : null}
         {step === 2 ? <AccountTypeStep form={form} update={update} errors={errors} /> : null}
         {step === 3 ? <TransactionDetailsStep form={form} update={update} errors={errors} /> : null}
@@ -143,7 +149,7 @@ export function LoadingWizard() {
             <label className="flex items-start gap-3 text-sm leading-6">
               <input
                 type="checkbox"
-                className="mt-1"
+                className="mt-1 h-5 w-5 shrink-0"
                 checked={form.confirmed}
                 onChange={(event) => update({ confirmed: event.target.checked })}
               />
@@ -154,15 +160,15 @@ export function LoadingWizard() {
         ) : null}
       </div>
 
-      <div className="flex flex-wrap justify-between gap-2">
-        <div className="flex gap-2">
-          <Button variant="ghost" onClick={() => setResetOpen(true)}>Reset form</Button>
-          {step > 1 ? <Button variant="outline" onClick={() => setStep((current) => current - 1)}>Back</Button> : null}
+      <div className="sticky bottom-0 z-20 -mx-4 flex flex-col gap-2 border-t border-line bg-canvas/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur sm:static sm:mx-0 sm:flex-row sm:items-center sm:justify-between sm:border-0 sm:bg-transparent sm:p-0">
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <Button variant="ghost" className="w-full sm:w-auto" onClick={() => setResetOpen(true)}>Reset form</Button>
+          {step > 1 ? <Button variant="outline" className="w-full sm:w-auto" onClick={() => setStep((current) => current - 1)}>Back</Button> : null}
         </div>
         {step < 5 ? (
-          <Button type="submit">Continue</Button>
+          <Button type="submit" className="w-full sm:w-auto">Continue</Button>
         ) : (
-          <Button type="submit" loading={submitting}>Create Demo Transaction</Button>
+          <Button type="submit" className="w-full sm:w-auto" loading={submitting}>Create Demo Transaction</Button>
         )}
       </div>
 

@@ -18,7 +18,7 @@ export function ConfirmDialog({
   if (!open) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[70] flex items-end justify-center p-4 sm:items-center">
+    <div className="fixed inset-0 z-[70] flex items-end justify-center p-0 sm:items-center sm:p-4">
       <button type="button" className="absolute inset-0 bg-stone-950/40" aria-label="Close dialog" onClick={onClose} />
       <div
         ref={ref}
@@ -26,11 +26,11 @@ export function ConfirmDialog({
         aria-modal="true"
         aria-labelledby="confirm-title"
         tabIndex={-1}
-        className="relative z-10 w-full max-w-md rounded-card border border-line bg-surface p-5 shadow-card outline-none"
+        className="relative z-10 w-full max-w-md rounded-t-card border border-line bg-surface p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] shadow-card outline-none sm:rounded-card"
       >
         <h2 id="confirm-title" className="text-lg font-semibold tracking-tight">{title}</h2>
         <div className="mt-2 text-sm leading-6 text-muted">{body}</div>
-        <div className="mt-5 flex flex-wrap justify-end gap-2">
+        <div className="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:flex-wrap sm:justify-end [&>*]:w-full sm:[&>*]:w-auto">
           <Button variant="outline" onClick={onClose} disabled={busy}>{cancelLabel}</Button>
           <Button variant={tone === 'danger' ? 'danger' : 'primary'} loading={busy} data-autofocus="true" onClick={onConfirm}>
             {confirmLabel}

@@ -66,7 +66,7 @@ export function CurrencyManagement() {
       </section>
       <div className="grid gap-4 md:grid-cols-2">
         {data.currencies.map((currency) => (
-          <article key={currency.code} className="card flex items-center justify-between gap-4 p-5">
+          <article key={currency.code} className="card flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
             <div>
               <p className="text-lg font-semibold">{currency.code} <span className="text-muted">{currency.symbol}</span></p>
               <p className="text-sm text-muted">{currency.name}</p>
@@ -74,7 +74,7 @@ export function CurrencyManagement() {
             </div>
             <button
               type="button"
-              className={`btn ${currency.enabled ? 'btn-primary' : 'btn-outline'}`}
+              className={`btn w-full sm:w-auto ${currency.enabled ? 'btn-primary' : 'btn-outline'}`}
               aria-pressed={currency.enabled}
               disabled={busy === currency.code}
               onClick={() => toggle(currency)}

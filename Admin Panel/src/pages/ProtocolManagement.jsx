@@ -87,7 +87,7 @@ export function ProtocolManagement() {
                       </div>
                       <p className="mt-3 flex-1 text-sm leading-6 text-muted">{protocol.description}</p>
                       <dl className="mt-4 space-y-1 text-sm">
-                        <div className="flex justify-between gap-3"><dt className="text-muted">Server profile</dt><dd className="text-right">{server?.name || 'Unassigned'}</dd></div>
+                        <div className="flex flex-wrap justify-between gap-x-3 gap-y-1"><dt className="text-muted">Server profile</dt><dd className="min-w-0 break-words text-right">{server?.name || 'Unassigned'}</dd></div>
                         <div className="flex justify-between gap-3"><dt className="text-muted">Enabled</dt><dd>{protocol.enabled ? 'Yes' : 'No'}</dd></div>
                         <div className="flex justify-between gap-3"><dt className="text-muted">Updated</dt><dd>{formatDateTime(protocol.updatedAt)}</dd></div>
                       </dl>

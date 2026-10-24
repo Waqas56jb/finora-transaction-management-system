@@ -53,9 +53,9 @@ function Summary({ title, onEdit, children }) {
 
 function Line({ label, value }) {
   return (
-    <div className="flex justify-between gap-4">
+    <div className="flex flex-wrap justify-between gap-x-4 gap-y-1">
       <dt className="text-muted">{label}</dt>
-      <dd className="text-right font-medium">{value}</dd>
+      <dd className="min-w-0 break-words text-right font-medium">{value}</dd>
     </div>
   );
 }

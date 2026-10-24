@@ -14,8 +14,8 @@ export function AppSidebar({ collapsed, mobileOpen, onNavigate, onToggleCollapse
   return (
     <aside
       className={cx(
-        'no-print fixed inset-y-0 left-0 z-40 flex flex-col border-r border-line bg-surface transition-transform lg:translate-x-0',
-        collapsed ? 'w-[272px] lg:w-[84px]' : 'w-[272px]',
+        'no-print fixed inset-y-0 left-[env(safe-area-inset-left)] z-40 flex w-[min(88vw,272px)] flex-col border-r border-line bg-surface pb-[env(safe-area-inset-bottom)] pt-[env(safe-area-inset-top)] transition-transform lg:translate-x-0',
+        collapsed ? 'lg:w-[84px]' : '',
         mobileOpen ? 'translate-x-0' : '-translate-x-full',
       )}
       aria-label="Primary"
@@ -28,7 +28,7 @@ export function AppSidebar({ collapsed, mobileOpen, onNavigate, onToggleCollapse
         </span>
       </div>
 
-      <nav className="min-h-0 flex-1 space-y-6 overflow-y-auto px-3 pb-4">
+      <nav className="min-h-0 flex-1 space-y-6 overflow-y-auto overscroll-contain px-3 pb-4">
         {navSections.map((section) => (
           <div key={section.label}>
             <p className={cx('eyebrow px-2', collapsed && 'lg:sr-only')}>{section.label}</p>
@@ -43,7 +43,7 @@ export function AppSidebar({ collapsed, mobileOpen, onNavigate, onToggleCollapse
                       title={item.label}
                       onClick={onNavigate}
                       className={({ isActive }) => cx(
-                        'flex items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
+                        'flex min-h-11 items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
                         isActive ? 'bg-soft font-medium text-ink' : 'text-muted hover:bg-soft hover:text-ink',
                         collapsed && 'lg:justify-center',
                       )}
@@ -70,7 +70,7 @@ export function AppSidebar({ collapsed, mobileOpen, onNavigate, onToggleCollapse
               const Icon = PANEL_ICONS[panel.id];
               const current = isCurrentPanel(panel.id);
               const className = cx(
-                'flex items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
+                'flex min-h-11 items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
                 current ? 'bg-soft font-medium text-ink' : 'text-muted hover:bg-soft hover:text-ink',
                 collapsed && 'lg:justify-center',
               );
@@ -96,7 +96,7 @@ export function AppSidebar({ collapsed, mobileOpen, onNavigate, onToggleCollapse
                 title="Transfer/Download Panel, coming in Milestone 2–3"
                 onClick={onNavigate}
                 className={({ isActive }) => cx(
-                  'flex items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
+                  'flex min-h-11 items-center gap-3 rounded-control px-2.5 py-2.5 text-sm',
                   isActive ? 'bg-soft font-medium' : 'text-muted hover:bg-soft hover:text-ink',
                   collapsed && 'lg:justify-center',
                 )}

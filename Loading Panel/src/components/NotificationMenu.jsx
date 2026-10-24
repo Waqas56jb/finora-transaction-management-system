@@ -85,7 +85,7 @@ export function NotificationMenu() {
     <div className="relative" ref={rootRef}>
       <button
         type="button"
-        className="relative rounded-control p-2 text-ink hover:bg-soft"
+        className="relative inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-control text-ink hover:bg-soft"
         aria-label={unread ? `Notifications, ${unread} unread` : 'Notifications'}
         aria-expanded={open}
         aria-haspopup="menu"
@@ -95,7 +95,7 @@ export function NotificationMenu() {
         {unread > 0 ? <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-rose-700" aria-hidden="true" /> : null}
       </button>
       {open ? (
-        <div role="menu" className="absolute right-0 z-50 mt-2 w-[min(100vw-2rem,22rem)] rounded-card border border-line bg-surface p-2 shadow-card">
+        <div role="menu" className="popover-sheet absolute right-0 z-50 mt-2 w-[min(100vw-2rem,22rem)] rounded-card border border-line bg-surface p-2 shadow-card">
           <div className="flex items-center justify-between px-2 py-1.5">
             <p className="text-sm font-semibold">Notifications</p>
             <button type="button" className="text-xs font-medium text-brand" onClick={markAll}>Mark all read</button>
@@ -108,7 +108,7 @@ export function NotificationMenu() {
             <ul className="max-h-80 overflow-auto">
               {items.map((item) => (
                 <li key={item.id}>
-                  <button type="button" role="menuitem" className="w-full rounded-control px-2 py-2 text-left hover:bg-soft" onClick={() => openItem(item)}>
+                  <button type="button" role="menuitem" className="w-full rounded-control px-2 py-3 text-left hover:bg-soft" onClick={() => openItem(item)}>
                     <span className="flex items-center gap-2 text-sm font-medium">
                       {!read.has(item.id) ? <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" /> : null}
                       {item.title}

@@ -2,7 +2,7 @@ import { cx } from '../utils/cx';
 
 export function StatCard({ label, value, hint, icon }) {
   return (
-    <article className="card p-5 transition duration-200 hover:-translate-y-0.5 hover:border-stone-300">
+    <article className="card min-w-0 p-4 transition duration-200 hover:border-stone-300 sm:p-5 [@media(hover:hover)]:hover:-translate-y-0.5">
       <div className="flex items-start justify-between gap-3">
         <p className="eyebrow">{label}</p>
         {icon ? <span className="grid h-9 w-9 place-items-center rounded-xl bg-soft text-brand">{icon}</span> : null}
@@ -15,7 +15,7 @@ export function StatCard({ label, value, hint, icon }) {
 
 export function SectionCard({ title, description, actions, children, className }) {
   return (
-    <section className={cx('card p-5', className)}>
+    <section className={cx('card min-w-0 p-4 sm:p-5', className)}>
       {title || actions ? (
         <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
           <div className="min-w-0">

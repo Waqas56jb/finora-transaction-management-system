@@ -12,9 +12,9 @@ export function AppHeader({ onMenu }) {
   const crumbs = handle?.crumbs || [{ label: handle?.title || 'Finora' }];
 
   return (
-    <header className="no-print sticky top-0 z-30 border-b border-line bg-surface/95 backdrop-blur">
-      <div className="flex items-center gap-3 px-4 py-3 lg:px-6">
-        <button type="button" className="rounded-control p-2 hover:bg-soft lg:hidden" aria-label="Open navigation" onClick={onMenu}>
+    <header className="border-b border-line bg-surface/95 backdrop-blur">
+      <div className="flex items-center gap-1 px-3 py-2 sm:gap-3 sm:px-4 lg:px-6">
+        <button type="button" className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-control hover:bg-soft lg:hidden" aria-label="Open navigation" onClick={onMenu}>
           <Menu className="h-5 w-5" />
         </button>
         <div className="min-w-0 flex-1">
@@ -33,12 +33,12 @@ export function AppHeader({ onMenu }) {
             </ol>
           </nav>
         </div>
-        <div className="hidden w-72 md:block">
+        <div className="hidden w-72 shrink-0 lg:block">
           <SearchMenu id="quick-search" />
         </div>
         <button
           type="button"
-          className="rounded-control p-2 hover:bg-soft"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-control hover:bg-soft"
           aria-label={prefs.theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
           onClick={() => update({ theme: prefs.theme === 'dark' ? 'light' : 'dark' })}
         >
@@ -47,7 +47,7 @@ export function AppHeader({ onMenu }) {
         <NotificationMenu />
         <ProfileMenu />
       </div>
-      <div className="px-4 pb-3 md:hidden">
+      <div className="px-3 pb-3 lg:hidden">
         <SearchMenu id="quick-search-mobile" />
       </div>
     </header>

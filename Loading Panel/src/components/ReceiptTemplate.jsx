@@ -32,6 +32,7 @@ export function ReceiptTemplate({ record, variant = 'standard', displayName, emb
         color: theme.ink,
         border: `1px solid ${theme.rule}`,
         borderRadius: 16,
+        width: '100%',
         maxWidth: variant === 'standard' ? 640 : 420,
         margin: '0 auto',
         overflow: 'hidden',
@@ -41,7 +42,7 @@ export function ReceiptTemplate({ record, variant = 'standard', displayName, emb
       <div style={{ background: '#7f1d1d', color: '#fff', padding: '10px 16px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textAlign: 'center' }}>
         DEMO — NOT A VALID FINANCIAL INSTRUMENT
       </div>
-      <div style={{ padding: 24 }}>
+      <div style={{ padding: '20px 16px' }}>
         <p style={{ margin: 0, fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: theme.muted }}>{theme.name}</p>
         <h2 style={{ margin: '8px 0 0', fontSize: 22 }}>{displayName || brand.product}</h2>
         <p style={{ margin: '8px 0 0', fontSize: 13, color: theme.muted }}>Simulated preview for interface testing. This slip does not move funds or certify an account.</p>
@@ -55,7 +56,7 @@ export function ReceiptTemplate({ record, variant = 'standard', displayName, emb
         <Row label="Account type" value={ACCOUNT_LABEL[record.accountType] || record.accountType} theme={theme} />
         <Row label="Masked identifier" value={record.account?.maskedIdentifier || '—'} theme={theme} />
         <Row label="Demo status" value={meta.label} theme={theme} />
-        <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginTop: 18 }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'center', marginTop: 18 }}>
           <QRCodeSVG value={qr} size={104} bgColor={theme.paper} fgColor={theme.ink} />
           <div>
             <p style={{ margin: 0, fontSize: 12, color: theme.muted }}>QR contents</p>
@@ -72,9 +73,9 @@ export function ReceiptTemplate({ record, variant = 'standard', displayName, emb
 
 function Row({ label, value, theme }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', gap: 16, padding: '7px 0', fontSize: 14, borderBottom: `1px solid ${theme.rule}` }}>
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: 8, padding: '7px 0', fontSize: 14, borderBottom: `1px solid ${theme.rule}` }}>
       <span style={{ color: theme.muted }}>{label}</span>
-      <span style={{ textAlign: 'right', fontWeight: 600 }}>{value}</span>
+      <span style={{ textAlign: 'right', fontWeight: 600, overflowWrap: 'anywhere', maxWidth: '100%' }}>{value}</span>
     </div>
   );
 }

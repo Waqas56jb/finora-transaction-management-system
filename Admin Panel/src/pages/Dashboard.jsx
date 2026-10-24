@@ -73,11 +73,11 @@ export function Dashboard() {
 
       <div className="grid gap-4 lg:grid-cols-5">
         <SectionCard className="lg:col-span-3" title="Transaction activity" description="Demo records created on each of the last seven days.">
-          <div className="h-64">
+          <div className="h-52 min-w-0 w-full sm:h-64">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={series}>
                 <CartesianGrid stroke={grid} vertical={false} />
-                <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
+                <XAxis dataKey="label" interval="preserveStartEnd" tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
                 <YAxis allowDecimals={false} width={28} tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
                 <Tooltip />
                 <Area type="monotone" dataKey="count" name="Demo records" stroke={CHART_COLORS.primary} fill={CHART_COLORS.primary} fillOpacity={0.16} />
@@ -90,7 +90,7 @@ export function Dashboard() {
             <p className="text-sm text-muted">No demo records yet.</p>
           ) : (
             <div className="grid items-center gap-2 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="h-48">
+              <div className="h-44 min-w-0 w-full sm:h-48">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={statusData} dataKey="value" nameKey="name" innerRadius={48} outerRadius={72} paddingAngle={2}>
@@ -168,7 +168,7 @@ export function Dashboard() {
                 <StatusBadge kind="server" status={profile.status} />
               </div>
               <dl className="mt-4 space-y-2 text-sm">
-                <div className="flex justify-between gap-3"><dt className="text-muted">Endpoint</dt><dd className="truncate text-right">{profile.baseUrl}</dd></div>
+                <div className="flex flex-wrap justify-between gap-x-3 gap-y-1"><dt className="text-muted">Endpoint</dt><dd className="min-w-0 break-all text-right">{profile.baseUrl}</dd></div>
                 <div className="flex justify-between gap-3"><dt className="text-muted">Default currency</dt><dd>{profile.defaultCurrency}</dd></div>
                 <div className="flex justify-between gap-3"><dt className="text-muted">Profile</dt><dd>{profile.enabled ? 'Enabled' : 'Disabled'}</dd></div>
               </dl>

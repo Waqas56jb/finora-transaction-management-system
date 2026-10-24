@@ -109,9 +109,9 @@ export function TransactionHistory() {
       />
       <Callout tone="info">This search does not query a bank, SWIFT, a card network, or a blockchain.</Callout>
       <TransactionSearch value={filters.query} onChange={(query) => patch({ query })} onClear={() => patch({ query: '' })} />
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+      <div className="flex flex-col gap-3 text-sm sm:flex-row sm:items-center sm:justify-between">
         <p className="text-muted">{result ? `${result.total} matching demo record${result.total === 1 ? '' : 's'}` : 'Searching demo records'}</p>
-        <Button variant="outline" className="lg:hidden" onClick={() => setFiltersOpen(true)}>Filters{active.length ? ` (${active.length})` : ''}</Button>
+        <Button variant="outline" className="w-full sm:w-auto lg:hidden" onClick={() => setFiltersOpen(true)}>Filters{active.length ? ` (${active.length})` : ''}</Button>
       </div>
       {active.length ? (
         <div className="flex flex-wrap gap-2">

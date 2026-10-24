@@ -45,7 +45,7 @@ export function Settings() {
       <Callout tone="neutral">
         Theme, page size, and notification choices are harmless display settings. API secrets, passwords, and card data are not stored.
       </Callout>
-      <form className="card max-w-2xl space-y-5 p-5" onSubmit={save}>
+      <form className="card max-w-2xl space-y-5 p-4 sm:p-5" onSubmit={save}>
         <FormField label="Application display name" htmlFor="display-name" required>
           <input id="display-name" className="field" value={draft.displayName} onChange={(event) => setDraft({ ...draft, displayName: event.target.value })} />
         </FormField>
@@ -59,9 +59,9 @@ export function Settings() {
         </FormField>
         <fieldset>
           <legend className="text-sm font-medium">Theme preference</legend>
-          <div className="mt-2 flex gap-4 text-sm">
+          <div className="mt-2 flex flex-wrap gap-4 text-sm">
             {['light', 'dark'].map((theme) => (
-              <label key={theme} className="flex items-center gap-2 capitalize">
+              <label key={theme} className="flex min-h-11 items-center gap-2 capitalize">
                 <input
                   type="radio"
                   name="theme"
@@ -89,8 +89,8 @@ export function Settings() {
             ['connectionAlerts', 'Include simulated connection alerts'],
             ['workflowAlerts', 'Include demo workflow alerts'],
           ].map(([key, label]) => (
-            <label key={key} className="flex items-center gap-2 text-sm">
-              <input type="checkbox" checked={draft.notifications[key]} onChange={(event) => setNotification(key, event.target.checked)} />
+            <label key={key} className="flex min-h-11 items-center gap-2 text-sm">
+              <input type="checkbox" className="h-5 w-5 shrink-0" checked={draft.notifications[key]} onChange={(event) => setNotification(key, event.target.checked)} />
               {label}
             </label>
           ))}

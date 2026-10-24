@@ -47,11 +47,11 @@ export function Dashboard() {
         <StatCard label="Cancelled demo records" value={count('cancelled')} hint="Cancelled locally" icon={<Ban className="h-4 w-4" />} />
       </div>
       <SectionCard title="Recent activity" description="Demo records created over the last seven days.">
-        <div className="h-56">
+        <div className="h-52 min-w-0 w-full sm:h-64">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={series}>
               <CartesianGrid stroke={prefs.theme === 'dark' ? CHART_COLORS.gridDark : CHART_COLORS.grid} vertical={false} />
-              <XAxis dataKey="label" tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
+              <XAxis dataKey="label" interval="preserveStartEnd" tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
               <YAxis allowDecimals={false} width={28} tick={{ fontSize: 12, fill: '#78716c' }} axisLine={false} tickLine={false} />
               <Tooltip />
               <Area type="monotone" dataKey="count" name="Demo records" stroke={CHART_COLORS.primary} fill={CHART_COLORS.primary} fillOpacity={0.15} />

@@ -31,8 +31,8 @@ export function DataTable({
         <EmptyState title={emptyTitle} description={emptyDescription} action={emptyAction} />
       ) : (
         <>
-          <div className={mobileRender ? 'hidden md:block' : 'block'}>
-            <div className="overflow-x-auto">
+          <div className={mobileRender ? 'max-md:hidden' : 'min-w-0'}>
+            <div className="min-w-0 overflow-x-auto overscroll-x-contain">
               <table className="min-w-[760px] w-full border-collapse text-sm">
                 <caption className="sr-only">{caption}</caption>
                 <thead className="bg-soft text-left text-xs uppercase tracking-[0.12em] text-muted">
@@ -82,11 +82,11 @@ export function DataTable({
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-4 py-3 text-sm text-muted">
           <p>Showing {start}–{end} of {total}</p>
           <div className="flex items-center gap-2">
-            <button type="button" className="btn btn-outline px-2.5 py-2" aria-label="Previous page" disabled={page <= 1} onClick={() => onPage(page - 1)}>
+            <button type="button" className="btn btn-outline min-w-11 px-2.5 py-2" aria-label="Previous page" disabled={page <= 1} onClick={() => onPage(page - 1)}>
               <ChevronLeft className="h-4 w-4" />
             </button>
             <span>Page {page} of {pages}</span>
-            <button type="button" className="btn btn-outline px-2.5 py-2" aria-label="Next page" disabled={page >= pages} onClick={() => onPage(page + 1)}>
+            <button type="button" className="btn btn-outline min-w-11 px-2.5 py-2" aria-label="Next page" disabled={page >= pages} onClick={() => onPage(page + 1)}>
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
